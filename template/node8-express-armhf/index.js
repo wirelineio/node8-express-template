@@ -20,6 +20,7 @@ class FunctionEvent {
         this.headers = req.headers;
         this.method = req.method;
         this.query = req.query;
+        this.path = req.path;
     }
 }
 
@@ -79,8 +80,8 @@ var middleware = (req, res) => {
     handler(fnEvent, fnContext, cb);
 };
 
-app.post('/', middleware);
-app.get('/', middleware);
+app.post('/*', middleware);
+app.get('/*', middleware);
 
 const port = process.env.http_port || 3000;
 
